@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://csfp47nkkmxsb"]
+
+[ext_resource type="Script" path="res://scenes/character_customization.gd" id="1_bi3li"]
+[ext_resource type="Shader" path="res://scenes/ColorSwap.gdshader" id="1_dval1"]
+[ext_resource type="Texture2D" uid="uid://owjk86tjth6x" path="res://assets/bentuk/bentuk-01.png" id="2_4ltkt"]
+[ext_resource type="Texture2D" uid="uid://x7v7xx8uqdxq" path="res://assets/emosi/emosi-02.png" id="4_nay31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qt82n"]
+shader = ExtResource("1_dval1")
+shader_parameter/target_color = null
+shader_parameter/replace_color = null
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_au41a"]
+shader = ExtResource("1_dval1")
+shader_parameter/target_color = null
+shader_parameter/replace_color = null
+shader_parameter/tolerance = null
+
+[node name="CharacterCustomization" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bi3li")
+
+[node name="PreviewSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qt82n")
+position = Vector2(201, 67)
+scale = Vector2(0.176259, 0.176259)
+hframes = 4
+
+[node name="ShapeSprite" type="Sprite2D" parent="PreviewSprite"]
+material = SubResource("ShaderMaterial_au41a")
+texture = ExtResource("2_4ltkt")
+hframes = 4
+
+[node name="ExpressionSprite" type="Sprite2D" parent="PreviewSprite"]
+texture = ExtResource("4_nay31")
+hframes = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 101.0
+
+[node name="ChangeShapeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Bentuk"
+
+[node name="ChangeColorButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Warna"
+
+[node name="ChangeExpressionButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ekspresi"
+
+[node name="GenerateButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 828.0
+offset_top = 538.0
+offset_right = 1086.0
+offset_bottom = 602.0
+text = "GENERATE"
+
+[connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]
