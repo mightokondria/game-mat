@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://csfp47nkkmxsb"]
+
+[ext_resource type="Script" path="res://scripts/CharacterCreation.gd" id="1_tcuti"]
+[ext_resource type="Shader" path="res://scenes/ColorSwap.gdshader" id="2_mbtli"]
+[ext_resource type="Texture2D" uid="uid://owjk86tjth6x" path="res://assets/bentuk/bentuk-01.png" id="3_fkoot"]
+[ext_resource type="Texture2D" uid="uid://x7v7xx8uqdxq" path="res://assets/emosi/emosi-02.png" id="4_s3rrf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qt82n"]
+shader = ExtResource("2_mbtli")
+shader_parameter/target_color = null
+shader_parameter/replace_color = null
+shader_parameter/tolerance = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_au41a"]
+shader = ExtResource("2_mbtli")
+shader_parameter/target_color = null
+shader_parameter/replace_color = null
+shader_parameter/tolerance = null
+
+[node name="CharacterCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tcuti")
+
+[node name="PreviewSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qt82n")
+position = Vector2(201, 67)
+scale = Vector2(0.176259, 0.176259)
+hframes = 4
+
+[node name="ShapeSprite" type="Sprite2D" parent="PreviewSprite"]
+material = SubResource("ShaderMaterial_au41a")
+texture = ExtResource("3_fkoot")
+hframes = 4
+
+[node name="ExpressionSprite" type="Sprite2D" parent="PreviewSprite"]
+texture = ExtResource("4_s3rrf")
+hframes = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 101.0
+
+[node name="ChangeShapeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Bentuk"
+
+[node name="ChangeColorButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Warna"
+
+[node name="ChangeExpressionButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ekspresi"
+
+[node name="GenerateButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = 134.0
+offset_right = 224.0
+offset_bottom = 198.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GENERATE"
+
+[connection signal="pressed" from="VBoxContainer/ChangeShapeButton" to="." method="_on_change_shape_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ChangeColorButton" to="." method="_on_change_color_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ChangeExpressionButton" to="." method="_on_change_expression_button_pressed"]
+[connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]

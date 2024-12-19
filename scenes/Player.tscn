@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgphsu1e0hp4f"]
+
+[ext_resource type="Texture2D" uid="uid://hfcu1l51pljp" path="res://assets/ASSETS ACCEPTANCE/ACEEPTANCE-09.png" id="1_67k8s"]
+[ext_resource type="Script" path="res://scenes/Player.gd" id="1_u7spt"]
+[ext_resource type="Shader" path="res://scenes/ColorSwap.gdshader" id="3_uh5s8"]
+[ext_resource type="Texture2D" uid="uid://bfgcd21lmr14e" path="res://assets/bentuk.png" id="4_tg778"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jysi"]
+shader = ExtResource("3_uh5s8")
+shader_parameter/target_color = Color(0.85098, 0.109804, 0.133333, 1)
+shader_parameter/replace_color = Color(0, 0.831235, 0, 1)
+shader_parameter/tolerance = 1.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_u7spt")
+
+[node name="CompositeSprites" type="Node2D" parent="."]
+
+[node name="Body types" type="Sprite2D" parent="CompositeSprites"]
+scale = Vector2(0.110577, 0.110577)
+texture = ExtResource("1_67k8s")
+hframes = 4
+vframes = 5
+frame = 2
+
+[node name="colors" type="Sprite2D" parent="CompositeSprites"]
+scale = Vector2(0.110577, 0.110577)
+texture = ExtResource("1_67k8s")
+hframes = 4
+vframes = 5
+frame = 2
+
+[node name="expressions" type="Sprite2D" parent="CompositeSprites"]
+scale = Vector2(0.110577, 0.110577)
+texture = ExtResource("1_67k8s")
+hframes = 4
+vframes = 5
+frame = 2
+
+[node name="Bentuk" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7jysi")
+position = Vector2(236, 42)
+scale = Vector2(0.10093, 0.10093)
+texture = ExtResource("4_tg778")
